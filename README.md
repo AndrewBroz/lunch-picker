@@ -6,7 +6,7 @@
 
 You can [customize Lunch Picker's restaurant selection criteria][options] such as location, distance, and price range with environment variables. The collection automatically saves its choice history to a [Postman environment][environments] and uses that history to make sure the selections stay interesting each time it's run.
 
-Start by [reading the docs][docs] or go straight to [running Lunch Picker in Postman][run]. Bon appétit!
+Start by [reading the docs][docs] or go straight to [running Lunch Picker in Postman][run]. _Bon appétit!_
 
 _MIT License, Copyright (c) 2017 Andrew Broz_
 
