@@ -552,7 +552,7 @@
               "    rating -= 3.1;",
               "    ",
               "    // Compute the new score",
-              "    return rating > 0 ? Math.ceil(2 * rating) : 0;",
+              "    return nonNegativeInt(2 * rating);",
               "}",
               "",
               "/**",
@@ -568,11 +568,7 @@
               "    const normedWalkScore = (r2 - d2) / r2;",
               "    ",
               "    // Adjust the walk score to fall between 0 and 4",
-              "    const score = Math.ceil(4 * normedWalkScore);",
-              "    ",
-              "    // Yelp occasionally returns results just outside the radius",
-              "    // For consistency, these results are disqualified",
-              "    return score > 0 ? score : 0;",
+              "    return nonNegativeInt(4 * normedWalkScore);",
               "}"
             ]
           }
