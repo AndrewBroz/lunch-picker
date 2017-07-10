@@ -2,13 +2,13 @@
 
 [![Run in Postman][button]][run]
 
-![An Example Slack Post][post]
-
 [Lunch Picker][docs] is a [Postman collection][collections] that acts as a restaurant discovery service, powered by the [Yelp Fusion API][yelp]. It suggests places for you or a team to have lunch and posts them to Slack, and can be run locally with the [Postman collection runner][runner] or with [Newman][newman], or as a scheduled remote job with [Postman Monitors][monitors].
 
 You can [customize Lunch Picker's restaurant selection criteria][options] such as location, distance, and price range with [environment variables][environments]. The collection automatically saves its choice history to a [Postman environment][environments] and uses that history to make sure the selections stay interesting each time it's run.
 
 Start by [reading the docs][docs] or go straight to [running Lunch Picker in Postman][run]. _Bon appétit!_
+
+![An Example Slack Post][post]
 
 _MIT License, Copyright (c) 2017 Andrew Broz_
 
