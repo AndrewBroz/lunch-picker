@@ -556,7 +556,7 @@
               " * Get an integer walk score.",
               " * ",
               " * @param {Number} restaurant.distance - The restaurant distance in meters.",
-              " * @returns {Number} - An integer between 1 and 4.",
+              " * @returns {Number} - An integer between 0 and 4.",
               " */",
               "function getWalkScore ({ distance }) {",
               "    // Assume laziness grows exponentially with distance",
@@ -564,11 +564,11 @@
               "    const d2 = square(distance);",
               "    const normedWalkScore = (r2 - d2) / r2;",
               "    ",
-              "    // Adjust the walk score to fall between 1 and 4",
+              "    // Adjust the walk score to fall between 0 and 4",
               "    const score = Math.ceil(4 * normedWalkScore);",
               "    ",
               "    // Yelp occasionally returns results just outside the radius",
-              "    // For consistency, disqualify these results",
+              "    // For consistency these results are disqualified",
               "    return score > 0 ? score : 0;",
               "}"
             ]
