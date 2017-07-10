@@ -564,8 +564,12 @@
               "    const d2 = square(distance);",
               "    const normedWalkScore = (r2 - d2) / r2;",
               "    ",
-              "    // Adjust the walk score to fall between 1 and 5",
-              "    return Math.ceil(4 * normedWalkScore);",
+              "    // Adjust the walk score to fall between 1 and 4",
+              "    const score = Math.ceil(4 * normedWalkScore);",
+              "    ",
+              "    // Yelp occasionally returns results just outside the radius",
+              "    // For consistency, disqualify these results",
+              "    return score > 0 ? score : 0;",
               "}"
             ]
           }
