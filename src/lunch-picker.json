@@ -568,7 +568,7 @@
               "    const score = Math.ceil(4 * normedWalkScore);",
               "    ",
               "    // Yelp occasionally returns results just outside the radius",
-              "    // For consistency these results are disqualified",
+              "    // For consistency, these results are disqualified",
               "    return score > 0 ? score : 0;",
               "}"
             ]
