@@ -151,7 +151,7 @@
               " * Add utility functions to the global scope.",
               " */",
               "function util () {",
-              "    // Polyfill lodash",
+              "    // Polyfill lodash round (not available in early versions of lodash)",
               "    if (!_.round) {",
               "        _.round = (number, precision) => +number.toFixed(precision);",
               "    }",
