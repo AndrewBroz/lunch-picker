@@ -552,7 +552,7 @@
               "        }",
               "        ",
               "        if (walkScore < 1) {",
-              "            warning(`\"${restaurant.name}\" disqualified by distance (Distance ${restaurant.distance}).`);",
+              "            warning(`\"${restaurant.name}\" disqualified by distance. (Distance ${restaurant.distance}m)`);",
               "        }",
               "        ",
               "        return duplicate(restaurant, ticketCount);",
@@ -876,9 +876,15 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "// Check for a success response",
+              "// Include util",
+              "eval(globals.util);",
+              "",
               "tests['Got a 200 response'] = responseCode.code === 200;",
-              "tests['Ok response'] = responseBody === 'ok';"
+              "tests['Ok response'] = responseBody === 'ok';",
+              "",
+              "if (responseBody !== 'ok') {",
+              "    warning(responseBody);",
+              "}"
             ]
           }
         },
