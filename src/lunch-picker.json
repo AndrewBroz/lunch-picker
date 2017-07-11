@@ -876,15 +876,9 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "// Include util",
-              "eval(globals.util);",
-              "",
+              "// Check for a success response",
               "tests['Got a 200 response'] = responseCode.code === 200;",
-              "tests['Ok response'] = responseBody === 'ok';",
-              "",
-              "if (responseBody !== 'ok') {",
-              "    warning(responseBody);",
-              "}"
+              "tests['Ok response'] = responseBody === 'ok';"
             ]
           }
         },
