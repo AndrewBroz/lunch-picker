@@ -1009,7 +1009,13 @@
               "tests['Got a 200 response'] = responseCode.code === 200;",
               "tests['Got back a response in expected format'] = !!env;",
               "",
-              "env && console.log(`\"${env.name}\" environment updated.`);"
+              "if (env) {",
+              "    console.log(`\"${env.name}\" environment updated.`);",
+              "}",
+              "else {",
+              "    console.log(responseBody);",
+              "}",
+              ""
             ]
           }
         },
