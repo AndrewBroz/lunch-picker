@@ -367,7 +367,7 @@
               "function makeChoices (restaurants) {",
               "    console.log(`Choosing from ${restaurants.length} restaurants ...`);",
               "    ",
-              "    // Compute averages from the original restaurant list",
+              "    // Get averages",
               "    averageRating = getAverage(restaurants, 'rating');",
               "    console.log(`The local average rating is ${averageRating}.`);",
               "    averageReviewCount = getAverage(restaurants, 'review_count');",
