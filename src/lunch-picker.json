@@ -1004,7 +1004,7 @@
               "// Include util",
               "eval(globals.util);",
               "",
-              "const { environment: env } = tryParse(responseBody, {});",
+              "const { environment: env, error } = tryParse(responseBody, {});",
               "",
               "tests['Got a 200 response'] = responseCode.code === 200;",
               "tests['Got back a response in expected format'] = !!env;",
@@ -1012,8 +1012,11 @@
               "if (env) {",
               "    console.log(`\"${env.name}\" environment updated.`);",
               "}",
+              "else if (error) {",
+              "    warning(error.message);",
+              "}",
               "else {",
-              "    console.log(responseBody);",
+              "    warning(responseBody);",
               "}",
               ""
             ]
