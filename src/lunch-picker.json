@@ -152,7 +152,7 @@
               " */",
               "function util () {",
               "    if (!_.round) {",
-              "        // Polyfill lodash round (not available in before lodash v3.10.0)",
+              "        // Polyfill lodash round (not available before lodash v3.10.0)",
               "        _.round = (number, precision) => +number.toFixed(precision);",
               "    }",
               "    ",
