@@ -391,6 +391,8 @@
               "",
               "/**",
               " * Calcualte averages and SDs from the dataset.",
+              " * ",
+              " * @param {Object[]} restaurants - An array of Yelp business objects.",
               " */",
               "function calculateStats (restaurants) {",
               "    averageRating = getAverage(restaurants, 'rating');",
