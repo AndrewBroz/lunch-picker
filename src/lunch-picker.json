@@ -398,7 +398,7 @@
               "    console.log(`The local average rating is ${averageRating}.`);",
               "    averageReviewCount = getAverage(restaurants, 'review_count');",
               "    console.log(`The local average review count is ${averageReviewCount}.`);",
-              "    ratingsSD = getSD({ values: restaurants.map(r => r.rating), average: averageRating });",
+              "    ratingsSD = getSD(restaurants.map(r => r.rating), averageRating);",
               "    console.log(`The review standrd deviation is ${ratingSD}.`);",
               "    ",
               "    // Use these in adjusted ratings",
