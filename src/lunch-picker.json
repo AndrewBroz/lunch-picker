@@ -599,7 +599,7 @@
               "    const weight = review_count / (review_count + root(averageReviewCount));",
               "    rating = weight * rating + (1 - weight) * averageRating;",
               "",
-              "    // Remove some stars to adjust for rating inflation",
+              "    // Remove some stars to adjust for rating inflation and disqualify mediocre results",
               "    rating -= adjustment;",
               "    ",
               "    // Compute the new score",
