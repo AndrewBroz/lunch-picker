@@ -326,7 +326,7 @@
               "const favorites = environment.favorites ? environment.favorites.split(',') : [];",
               "const walking = tryParse(environment.walking, false);",
               "",
-              "// Set once we calculate stats",
+              "// Set once we calculate stats (once we have all retaurants)",
               "let averageRating = 0;",
               "let averageReviewCount = 0;",
               "let ratingsSD = 0;",
