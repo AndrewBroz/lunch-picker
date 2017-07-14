@@ -316,7 +316,7 @@
               "const limit = 50;",
               "const offset = +globals.offset || 0;",
               "",
-              "// We use the radius to compute walk scores",
+              "// Use the radius to compute walk scores",
               "const radius = +globals.radius || +environment.radius;",
               "",
               "// Optional environment variables",
