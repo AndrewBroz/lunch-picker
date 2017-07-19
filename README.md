@@ -10,7 +10,7 @@ Start by [reading the docs][docs], then try [running Lunch Picker in Postman][ru
 
 _**[Check out the Postman blog post about Lunch Picker.][blog]**_
 
-![An Example Slack Post][post]
+[<img width="469" height="314" src="https://i.imgur.com/2YJeB28.png" alt="An example Slack post with restaurant picks from Lunch Picker running as an 8am monitor." />][docs]
 
 _MIT License, Copyright (c) 2017 Andrew Broz_
 
