@@ -187,7 +187,7 @@
               "    nonNegativeInt = x => x > 0 ? Math.ceil(x) : 0;",
               "",
               "    // Return an array with n duplicates of x",
-              "    duplicate = (x, n) => n && n > 0 ? Array(n).fill(x) : [];",
+              "    duplicate = (x, n) => n > 0 ? Array(n).fill(x) : [];",
               "",
               "    // Pluralize based on an array's length",
               "    pluralize = (ls, string, plural) => ls.length === 1 ? string : plural || `${string}s`;",
