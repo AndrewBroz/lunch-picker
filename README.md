@@ -8,11 +8,13 @@ You can [customize Lunch Picker's restaurant selection criteria][options] such a
 
 Start by [reading the docs][docs], then try [running Lunch Picker in Postman][run]. _Bon appétit!_
 
+_[Check out the Postman blog post about Lunch Picker.][blog]_
+
 ![An Example Slack Post][post]
 
 _MIT License, Copyright (c) 2017 Andrew Broz_
 
-
+[blog]: http://blog.getpostman.com/2017/07/19/building-a-restaurant-discovery-service-with-postman/
 [button]: https://run.pstmn.io/button.svg
 [collections]: https://www.getpostman.com/docs/postman/collections/creating_collections "About Collections"
 [docs]: https://documenter.getpostman.com/view/218543/lunch-picker/6fWy4Ao "Lunch Picker Documentation"
