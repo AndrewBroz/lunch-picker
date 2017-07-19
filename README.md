@@ -12,7 +12,7 @@ Start by [reading the docs][docs], then try [running Lunch Picker in Postman][ru
 
 -----------
 
-Check out the [Postman blog post][blog] for a high-level overview of the Lunch Picker collection.
+Check out the [Postman blog post][blog] for some background and a high-level overview of the Lunch Picker collection.
 
 _MIT License, Copyright (c) 2017 [Andrew Broz][abroz]_
 
