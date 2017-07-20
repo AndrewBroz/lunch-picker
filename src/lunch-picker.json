@@ -574,7 +574,7 @@
               "    }",
               "    else {",
               "        const adjustedRating = getAdjustedRating(restaurant);",
-              "        const walkScore = walking ? getWalkScore(restaurant) : 1;",
+              "        const walkScore = walking ? getWalkScore(restaurant) : 4;",
               "        const ticketCount = walkScore * square(adjustedRating);",
               "        ",
               "        if (adjustedRating < 1) {",
