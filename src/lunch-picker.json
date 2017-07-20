@@ -557,7 +557,7 @@
               " * @returns {String[]} - An array of restaurant category aliases.",
               " */",
               "function getCategories ({ categories = [] }) {",
-              "    return categories.map(c => c.alias);",
+              "    return categories.map(category => category.alias);",
               "}",
               "",
               "/**",
