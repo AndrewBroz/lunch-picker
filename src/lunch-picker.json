@@ -38,6 +38,8 @@
           "script": {
             "type": "text/javascript",
             "exec": [
+              "// \"Lunch Picker\" MIT License, Copyright (c) 2017 Andrew Broz",
+              "",
               "// Include util",
               "util();",
               "",
