@@ -608,7 +608,7 @@
               " */",
               "function getWalkScore ({ distance }) {",
               "    if (!walking) {",
-              "        // When not walking assign all restaurants the maximum walk score",
+              "        // When not walking, assign all restaurants the maximum walk score",
               "        return 4;",
               "    }",
               "    ",
