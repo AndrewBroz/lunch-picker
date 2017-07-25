@@ -1049,10 +1049,10 @@
               "    console.log(`\"${env.name}\" environment updated.`);",
               "}",
               "else if (error) {",
-              "    warning(error.message);",
+              "    stopWorkflow(error.message);",
               "}",
               "else {",
-              "    warning(responseBody);",
+              "    stopWorkflow(responseBody);",
               "}",
               ""
             ]
