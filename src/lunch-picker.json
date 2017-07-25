@@ -908,10 +908,12 @@
               "// Include util",
               "eval(globals.util);",
               "",
-              "tests['Got a 200 response from Slack'] = responseCode.code === 200;",
-              "tests['Ok response from Slack'] = responseBody === 'ok';",
+              "const isOkResponse = responseBody === 'ok';",
               "",
-              "if (responseBody !== 'ok') {",
+              "tests['Got a 200 response from Slack'] = responseCode.code === 200;",
+              "tests['Ok response from Slack'] = isOkResponse;",
+              "",
+              "if (!isOkResponse) {",
               "    warning(responseBody);",
               "}"
             ]
