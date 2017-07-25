@@ -897,6 +897,75 @@
       ]
     },
     {
+      "_postman_id": "fe7e2416-4af9-fffc-02af-b8fc2c58a181",
+      "name": "Update Environment",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Include util",
+              "eval(globals.util);",
+              "",
+              "const { environment: env, error } = tryParse(responseBody, {});",
+              "",
+              "tests['Got a 200 response'] = responseCode.code === 200;",
+              "tests['Got back a response in expected format'] = !!env;",
+              "",
+              "if (env) {",
+              "    console.log(`\"${env.name}\" environment updated.`);",
+              "}",
+              "else if (error) {",
+              "    stopWorkflow(error.message);",
+              "}",
+              "else {",
+              "    stopWorkflow(responseBody);",
+              "}",
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Include util",
+              "eval(globals.util);",
+              "",
+              "const values = Object.keys(environment)",
+              "    .map(key => ({ key, value: environment[key] }));",
+              "",
+              "updateGlobals({ values });"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "https://api.getpostman.com/environments/{{environmentID}}",
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{postmanApiKey}}",
+            "description": ""
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"environment\": {\n\t\t\"values\": {{values}}\n\t}\n}"
+        },
+        "description": "Update the Postman environment for the lunch picker. This step is necessary when running the collection as a monitor, since updates to the environment that happen during a monitor run don't persist otherwise.\n\nMake sure `postmanApiKey` and `environmentID` are set in your environment. See the [Postman Pro API documentation](https://docs.api.getpostman.com/#authentication). You can get your environment id by downloading your environment and copying it from the `id` property, or you can get your environment from the [Postman Pro API](https://docs.api.getpostman.com/#d26bd079-e3e1-aa08-7e21-66f55df99351). Make sure the `environmentID` matches the id of the environment you run the collection with!\n\n|Environment Variable Name |Required? |Description\n|--------------------------|----------|--------------\n|`postmanApiKey`            |**YES**  |A Postman Pro [API key](https://docs.api.getpostman.com/#authentication).\n|`environmentID`            |**YES**  |The id for your environment."
+      },
+      "response": []
+    },
+    {
       "_postman_id": "743d4b24-e3ee-e6b2-83b8-2ddfd1332dae",
       "name": "Post to Slack",
       "event": [
@@ -1025,75 +1094,6 @@
           "raw": "{\n\t\"text\": {{formattedChoices}}\n}"
         },
         "description": "Post formatted restaurant choices to Slack. Include voting instructions if there's more than one choice.\n\nMake sure `webhook` is set in your environment. To get a webhook url, [create a Slack app](https://api.slack.com/slack-apps), [activate incoming webhooks](https://api.slack.com/incoming-webhooks), and add a webhook for your team.\n\n|Environment Variable Name |Required? |Description\n|--------------------------|----------|--------------\n|`webhook`                 |**YES**   |An [incoming webhook](https://api.slack.com/incoming-webhooks) url."
-      },
-      "response": []
-    },
-    {
-      "_postman_id": "fe7e2416-4af9-fffc-02af-b8fc2c58a181",
-      "name": "Update Environment",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "type": "text/javascript",
-            "exec": [
-              "// Include util",
-              "eval(globals.util);",
-              "",
-              "const { environment: env, error } = tryParse(responseBody, {});",
-              "",
-              "tests['Got a 200 response'] = responseCode.code === 200;",
-              "tests['Got back a response in expected format'] = !!env;",
-              "",
-              "if (env) {",
-              "    console.log(`\"${env.name}\" environment updated.`);",
-              "}",
-              "else if (error) {",
-              "    stopWorkflow(error.message);",
-              "}",
-              "else {",
-              "    stopWorkflow(responseBody);",
-              "}",
-              ""
-            ]
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "type": "text/javascript",
-            "exec": [
-              "// Include util",
-              "eval(globals.util);",
-              "",
-              "const values = Object.keys(environment)",
-              "    .map(key => ({ key, value: environment[key] }));",
-              "",
-              "updateGlobals({ values });"
-            ]
-          }
-        }
-      ],
-      "request": {
-        "url": "https://api.getpostman.com/environments/{{environmentID}}",
-        "method": "PUT",
-        "header": [
-          {
-            "key": "x-api-key",
-            "value": "{{postmanApiKey}}",
-            "description": ""
-          },
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "description": ""
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"environment\": {\n\t\t\"values\": {{values}}\n\t}\n}"
-        },
-        "description": "Update the Postman environment for the lunch picker. This step is necessary when running the collection as a monitor, since updates to the environment that happen during a monitor run don't persist otherwise.\n\nMake sure `postmanApiKey` and `environmentID` are set in your environment. See the [Postman Pro API documentation](https://docs.api.getpostman.com/#authentication). You can get your environment id by downloading your environment and copying it from the `id` property, or you can get your environment from the [Postman Pro API](https://docs.api.getpostman.com/#d26bd079-e3e1-aa08-7e21-66f55df99351). Make sure the `environmentID` matches the id of the environment you run the collection with!\n\n|Environment Variable Name |Required? |Description\n|--------------------------|----------|--------------\n|`postmanApiKey`            |**YES**  |A Postman Pro [API key](https://docs.api.getpostman.com/#authentication).\n|`environmentID`            |**YES**  |The id for your environment."
       },
       "response": []
     }
