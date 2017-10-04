@@ -39,9 +39,7 @@
               "    });",
               "}",
               "catch (e) {",
-              "    stopWorkflow();",
-              "    ",
-              "    throw e;",
+              "    stopWorkflow(e.message);",
               "}"
             ]
           }
