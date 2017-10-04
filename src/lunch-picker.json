@@ -49,7 +49,6 @@
             "exec": [
               "// \"Lunch Picker\" MIT License, Copyright (c) 2017 Andrew Broz (@abroz)",
               "// Find the latest version at https://github.com/abroz/lunch-picker",
-              "'use sandbox2';",
               "",
               "// Include util",
               "util();",
