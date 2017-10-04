@@ -949,9 +949,9 @@
             "type": "text/javascript",
             "exec": [
               "// Include util",
-              "eval(globals.util);",
+              "eval(pm.globals.get('util'));",
               "",
-              "const values = Object.keys(environment)",
+              "const values = Object.keys(pm.environment.toObject())",
               "    .map(key => ({ key, value: environment[key] }));",
               "",
               "updateGlobals({ values });"
