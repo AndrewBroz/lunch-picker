@@ -997,7 +997,7 @@
             "type": "text/javascript",
             "exec": [
               "// Include util",
-              "eval(globals.util);",
+              "eval(pm.globals.get('util'));",
               "",
               "const isResponseOk = responseBody === 'ok';",
               "",
@@ -1016,7 +1016,7 @@
             "type": "text/javascript",
             "exec": [
               "// Include util",
-              "eval(globals.util);",
+              "eval(pm.globals.get('util'));",
               "",
               "// Polling icons",
               "const icons = [",
