@@ -25,6 +25,7 @@
               "",
               "pm.test('Included an access token and expiry stamp', () => {",
               "    const responseData = pm.response.json();",
+              "    ",
               "    pm.expect(responseData).to.have.property('access_token');",
               "    pm.expect(responseData).to.have.property('expires_in');",
               "});",
