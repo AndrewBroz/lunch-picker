@@ -29,8 +29,6 @@
               "",
               "try {",
               "    const { access_token: yelpAccessToken } = pm.response.json();",
-              "    ",
-              "    console.log(yelpAccessToken);",
               "",
               "    pm.environment.set('yelpAccessToken', yelpAccessToken);",
               "}",
