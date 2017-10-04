@@ -669,7 +669,7 @@
               "",
               "    updateGlobals({ openAt, radius, price, offset: 0 });",
               "    ",
-              "    console.log(`Searching for restaurants near ${environment.location}.`);",
+              "    console.log(`Searching for restaurants near ${pm.environment.get('location')}.`);",
               "    console.log(`Searching for results within ${radius} meters.`);",
               "    price && console.log(`Searching for results within Yelp price range (${price}).`);",
               "    openAt && console.log(`Searching for results open in ${openIn} hours on ${new Date(1000 * openAt)}.`);",
