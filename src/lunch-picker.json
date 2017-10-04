@@ -996,9 +996,6 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "// Include util",
-              "eval(pm.globals.get('util'));",
-              "",
               "pm.test('Response is OK', () => {",
               "    pm.response.to.be.ok;",
               "});",
