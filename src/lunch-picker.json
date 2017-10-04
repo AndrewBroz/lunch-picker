@@ -999,8 +999,6 @@
               "// Include util",
               "eval(pm.globals.get('util'));",
               "",
-              "const isResponseOk = responseBody === 'ok';",
-              "",
               "pm.test('Response is OK', () => {",
               "    pm.response.to.be.ok;",
               "});",
