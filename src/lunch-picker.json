@@ -221,7 +221,7 @@
               "    );",
               "",
               "    // Set environment variables by passing an object with key/value pairs",
-              "    updateEnvironment = updateFactory('environments');",
+              "    updateEnvironment = updateFactory('environment');",
               "",
               "    // Set global variables by passing an object with key/value pairs",
               "    updateGlobals = updateFactory('globals');",
