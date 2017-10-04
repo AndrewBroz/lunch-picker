@@ -19,7 +19,7 @@
               "'use sandbox2';",
               "",
               "// Include util",
-              "eval(pm.globals.get(util));",
+              "eval(pm.globals.get('util'));",
               "",
               "pm.test('Response is OK', () => {",
               "    pm.response.to.be.ok;",
