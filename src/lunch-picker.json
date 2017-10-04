@@ -16,8 +16,6 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "'use sandbox2';",
-              "",
               "// Include util",
               "eval(pm.globals.get('util'));",
               "",
