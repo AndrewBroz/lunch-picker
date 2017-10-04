@@ -38,8 +38,8 @@
               "        yelpAccessTokenExpiresAt: Date.now() + parseInt(expires_in),",
               "    });",
               "}",
-              "catch (e) {",
-              "    stopWorkflow(e.message);",
+              "catch (error) {",
+              "    stopWorkflow(error.message);",
               "}"
             ]
           }
