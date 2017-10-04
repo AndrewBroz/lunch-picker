@@ -933,7 +933,7 @@
               "    pm.expect(pm.response.json()).to.have.property('environment');",
               "});",
               "",
-              "const { environment: env, error } = tryParse(pm.response, {});",
+              "const { environment: env, error } = tryParse(pm.response.text(), {});",
               "",
               "if (env) {",
               "    console.log(`\"${env.name}\" environment updated.`);",
