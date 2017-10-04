@@ -1001,12 +1001,13 @@
               "",
               "const isResponseOk = responseBody === 'ok';",
               "",
-              "tests['Got a 200 response from Slack'] = responseCode.code === 200;",
-              "tests['Ok response from Slack'] = isResponseOk;",
+              "pm.test('Response is OK', () => {",
+              "    pm.response.to.be.ok;",
+              "});",
               "",
-              "if (!isResponseOk) {",
-              "    stopWorkflow(responseBody);",
-              "}"
+              "pm.test('Slack response text is OK', () => {",
+              "    pm.expect(pm.response.text()).to.equal('ok');",
+              "});"
             ]
           }
         },
