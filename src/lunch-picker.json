@@ -1032,7 +1032,7 @@
               "    ':keycap_ten:',",
               "];",
               "",
-              "const choices = tryParse(globals.choices, []);",
+              "const choices = tryParse(pm.globals.get('choices'), []);",
               "const formattedChoices = format(choices);",
               "",
               "updateGlobals({ formattedChoices });",
