@@ -650,7 +650,7 @@
               "'use sandbox2';",
               "",
               "// Include util",
-              "eval(pm.globals.get(util));",
+              "eval(pm.globals.get('util'));",
               "",
               "// Set globals on the first iteration",
               "if (!pm.globals.get('offset')) {",
