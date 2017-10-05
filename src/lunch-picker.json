@@ -208,7 +208,7 @@
               "        / values.length",
               "    );",
               "    ",
-              "    // Takes a number to a non-negative integer (negatives all map to zero)",
+              "    // Takes a number to a non-negative integer (non-positive values all map to zero)",
               "    nonNegativeInt = x => x > 0 ? Math.ceil(x) : 0;",
               "",
               "    // Return an array with n duplicates of x",
