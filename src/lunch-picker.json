@@ -417,7 +417,7 @@
               "}",
               "",
               "/**",
-              " * Choose restaurants.",
+              " * Choose restaurants using a random raffle strategy with removal.",
               " * ",
               " * @param {Object[]} restaurants - An array of Yelp business objects.",
               " * @param {Object[]} choiceHistory - An array of Yelp business objects (history from previous runs).",
