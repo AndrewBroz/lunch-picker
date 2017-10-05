@@ -391,6 +391,7 @@
               "function getMoreRestaurants (restaurants) {",
               "    updateGlobals({ restaurants, offset: offset + limit });",
               "",
+              "    // Repeat this request with updated globals to get more restaurants",
               "    postman.setNextRequest('Pick Restaurants');",
               "    ",
               "    console.log(`Getting 50 more results (current offset ${pm.globals.get('offset')}) ...`);",
