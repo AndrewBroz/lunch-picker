@@ -256,7 +256,7 @@
               "        const value = pm.environment.get(key);",
               "        const isUndefined = value === undefined;",
               "        ",
-              "        if (!optional && !isUndefined) {",
+              "        if (!optional && isUndefined) {",
               "            stopAndThrow(`Missing required environment variable \"${key}\".`);",
               "        }",
               "        ",
