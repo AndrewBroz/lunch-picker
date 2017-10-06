@@ -336,7 +336,7 @@
               "});",
               "",
               "pm.test('Got businesses', () => {",
-              "    pm.expect(pm.response.json()).to.have.property('businesses');",
+              "    pm.expect(pm.response.json()).to.have.property('businesses').that.is.an.array;",
               "});",
               "",
               "// Paging values",
