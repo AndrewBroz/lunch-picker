@@ -23,7 +23,7 @@
               "    pm.response.to.be.ok;",
               "});",
               "",
-              "pm.test('Included an access token and expires in value', () => {",
+              "pm.test('Included access_token and expires_in values', () => {",
               "    const responseData = pm.response.json();",
               "    ",
               "    pm.expect(responseData).to.have.property('access_token');",
