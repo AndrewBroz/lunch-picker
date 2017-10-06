@@ -338,7 +338,6 @@
               "pm.test('Got businesses', () => {",
               "    const responseData = pm.response.json();",
               "    pm.expect(responseData).to.have.property('businesses').that.is.an('array');",
-              "    pm.expect(responseData).to.not.have.property('error');",
               "});",
               "",
               "pm.test('No error in response', () => {",
