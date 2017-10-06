@@ -963,8 +963,8 @@
               "// Include util",
               "eval(pm.globals.get('util'));",
               "",
-              "const values = Object.entries(pm.environment.toObject())",
-              "    .map(([key, value]) => ({ key, value: `${value}` }));",
+              "const env = pm.environment.toObject();",
+              "const values = Object.keys(env).map(key => ({ key, value: JSON.stringify(env[key]) }));",
               "",
               "updateGlobals({ values });"
             ]
