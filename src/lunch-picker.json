@@ -328,6 +328,7 @@
               "const currentGlobals = pm.globals.toObject();",
               "const currentEnvironment = pm.environment.toObject();",
               "",
+              "// Include util",
               "eval(currentGlobals.util);",
               "",
               "// Do some basic tests to make sure the response looks right",
