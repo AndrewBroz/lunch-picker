@@ -964,7 +964,7 @@
               "eval(pm.globals.get('util'));",
               "",
               "const values = Object.entries(pm.environment.toObject())",
-              "    .map(([key, value]) => ({ key, value: JSON.stringify(value) }));",
+              "    .map(([key, value]) => ({ key, value: `${value}` }));",
               "",
               "updateGlobals({ values });"
             ]
