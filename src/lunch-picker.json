@@ -970,11 +970,13 @@
               "// Include util",
               "eval(pm.globals.get('util'));",
               "",
+              "// Transform environment values to match Postman API format",
               "const env = pm.environment.toObject();",
               "const values = Object.keys(env).map(key => {",
               "    return { key, value: `${env[key]}` };",
               "});",
               "",
+              "// Save values",
               "updateGlobals({ values });"
             ]
           }
