@@ -1120,10 +1120,6 @@
               "function cleanUpUrl (url) {",
               "    const queryIndex = url.indexOf('?');",
               "    return url.slice(0, queryIndex);",
-              "}",
-              "",
-              "function pluralize (array, string) {",
-              "    return array.length === 1 ? string : `${string}s`;",
               "}"
             ]
           }
