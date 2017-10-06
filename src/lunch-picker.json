@@ -1011,13 +1011,20 @@
           "script": {
             "type": "text/javascript",
             "exec": [
+              "// Include util",
+              "eval(pm.globals.get('util'));",
+              "",
+              "// Tests",
               "pm.test('Response is OK', () => {",
               "    pm.response.to.be.ok;",
               "});",
               "",
               "pm.test('Slack response text is ok', () => {",
               "    pm.expect(pm.response.text()).to.equal('ok');",
-              "});"
+              "});",
+              "",
+              "// Final cleanup",
+              "clearLunchPickerGlobals();"
             ]
           }
         },
