@@ -976,7 +976,7 @@
               "    return { key, value: `${env[key]}` };",
               "});",
               "",
-              "// Save values",
+              "// Save updated values to globals",
               "updateGlobals({ values });"
             ]
           }
