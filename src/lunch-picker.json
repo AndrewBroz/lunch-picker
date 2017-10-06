@@ -965,7 +965,7 @@
               "",
               "const env = pm.environment.toObject();",
               "const values = Object.keys(env).map(key => {",
-              "    return { key, value: JSON.stringify(env[key]) };",
+              "    return { key, value: `${env[key]}` };",
               "});",
               "",
               "updateGlobals({ values });"
