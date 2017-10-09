@@ -959,6 +959,7 @@
               "",
               "// Log on success, stop and log on error",
               "const { environment: env, error } = tryParse(pm.response.text(), {});",
+              "",
               "if (env) {",
               "    console.log(`\"${env.name}\" environment updated.`);",
               "}",
