@@ -19,6 +19,7 @@
               "// Include util",
               "eval(pm.globals.get('util'));",
               "",
+              "// Test the response",
               "pm.test('Response is OK', () => {",
               "    pm.response.to.be.ok;",
               "});",
@@ -31,12 +32,14 @@
               "});",
               "",
               "try {",
+              "    // Save the access token and expiry date to the environment",
               "    const responseData = pm.response.json();",
               "",
               "    pm.environment.set('yelpAccessToken', responseData.access_token);",
               "    pm.environment.set('yelpAccessTokenExpiresAt', Date.now() + parseInt(responseData.expires_in));",
               "}",
               "catch (error) {",
+              "    // Something went wrong",
               "    stopWorkflow(error.message);",
               "}"
             ]
