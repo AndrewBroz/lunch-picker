@@ -1131,7 +1131,9 @@
         "id": "a5e976e6-031b-44e1-ac04-1a852650debe",
         "type": "text/javascript",
         "exec": [
-          "console.log('TESTING TESTING TESTING');"
+          "console.log('TESTING TESTING TESTING');",
+          "",
+          "const cats = 'cats';"
         ]
       }
     },
