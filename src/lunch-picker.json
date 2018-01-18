@@ -13,6 +13,7 @@
         {
           "listen": "prerequest",
           "script": {
+            "id": "e6208fbf-9f91-4c8b-bced-e457d88f706a",
             "type": "text/javascript",
             "exec": [
               "// \"Lunch Picker\" MIT License, Copyright (c) 2017 Andrew Broz (@abroz)",
@@ -243,6 +244,7 @@
         {
           "listen": "test",
           "script": {
+            "id": "202ebfb0-6ab2-4d59-a4e3-960e757735e8",
             "type": "text/javascript",
             "exec": [
               "// Include util",
