@@ -1,5 +1,4 @@
 {
-  "variables": [],
   "info": {
     "name": "Lunch Picker",
     "_postman_id": "a3712c2d-ae9f-4b2b-469c-1a2beb119007",
@@ -11,40 +10,6 @@
       "_postman_id": "bdffc5c2-06f8-b3b5-0f4f-0533f12b6151",
       "name": "Get Yelp Access Token",
       "event": [
-        {
-          "listen": "test",
-          "script": {
-            "type": "text/javascript",
-            "exec": [
-              "// Include util",
-              "eval(pm.globals.get('util'));",
-              "",
-              "// Test the response",
-              "pm.test('Response is OK', () => {",
-              "    pm.response.to.be.ok;",
-              "});",
-              "",
-              "pm.test('Included access_token and expires_in values', () => {",
-              "    const responseData = pm.response.json();",
-              "    ",
-              "    pm.expect(responseData).to.have.property('access_token');",
-              "    pm.expect(responseData).to.have.property('expires_in');",
-              "});",
-              "",
-              "try {",
-              "    // Save the access token and expiry date to the environment",
-              "    const responseData = pm.response.json();",
-              "",
-              "    pm.environment.set('yelpAccessToken', responseData.access_token);",
-              "    pm.environment.set('yelpAccessTokenExpiresAt', Date.now() + parseInt(responseData.expires_in));",
-              "}",
-              "catch (error) {",
-              "    // Something went wrong",
-              "    stopWorkflow(error.message);",
-              "}"
-            ]
-          }
-        },
         {
           "listen": "prerequest",
           "script": {
@@ -274,13 +239,49 @@
               "}"
             ]
           }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Include util",
+              "eval(pm.globals.get('util'));",
+              "",
+              "// Test the response",
+              "pm.test('Response is OK', () => {",
+              "    pm.response.to.be.ok;",
+              "});",
+              "",
+              "pm.test('Included access_token and expires_in values', () => {",
+              "    const responseData = pm.response.json();",
+              "    ",
+              "    pm.expect(responseData).to.have.property('access_token');",
+              "    pm.expect(responseData).to.have.property('expires_in');",
+              "});",
+              "",
+              "try {",
+              "    // Save the access token and expiry date to the environment",
+              "    const responseData = pm.response.json();",
+              "",
+              "    pm.environment.set('yelpAccessToken', responseData.access_token);",
+              "    pm.environment.set('yelpAccessTokenExpiresAt', Date.now() + parseInt(responseData.expires_in));",
+              "}",
+              "catch (error) {",
+              "    // Something went wrong",
+              "    stopWorkflow(error.message);",
+              "}"
+            ]
+          }
         }
       ],
       "request": {
+        "method": "POST",
+        "header": [],
+        "body": {},
         "url": {
           "raw": "https://api.yelp.com/oauth2/token?grant_type=client_credentials&client_id={{yelpClientID}}&client_secret={{yelpClientSecret}}",
           "protocol": "https",
-          "auth": {},
           "host": [
             "api",
             "yelp",
@@ -294,27 +295,20 @@
             {
               "key": "grant_type",
               "value": "client_credentials",
-              "equals": true,
-              "description": ""
+              "equals": true
             },
             {
               "key": "client_id",
               "value": "{{yelpClientID}}",
-              "equals": true,
-              "description": ""
+              "equals": true
             },
             {
               "key": "client_secret",
               "value": "{{yelpClientSecret}}",
-              "equals": true,
-              "description": ""
+              "equals": true
             }
-          ],
-          "variable": []
+          ]
         },
-        "method": "POST",
-        "header": [],
-        "body": {},
         "description": "Get a [Yelp Acess Token](https://www.yelp.com/developers/documentation/v3/authentication) from a Yelp client ID and Yelp client secret.\n\nMake sure both `yelpClientID` and `yelpClientSecret` are set in your environment.\n\n|Environment Variable Name |Required? |Description\n|--------------------------|----------|--------------\n|`yelpClientID`            |**YES**   |[A Yelp client ID.](https://www.yelp.com/developers/documentation/v3/authentication)\n|`yelpClientSecret`        |**YES**   |[A Yelp client secret.](https://www.yelp.com/developers/documentation/v3/authentication)"
       },
       "response": []
@@ -323,6 +317,39 @@
       "_postman_id": "cc479560-f6cf-f199-1757-65d9f051a324",
       "name": "Pick Restaurants",
       "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Include util",
+              "eval(pm.globals.get('util'));",
+              "",
+              "// Set globals on the first iteration",
+              "if (!pm.globals.get('offset')) {",
+              "    validateVariables([{",
+              "        key: 'yelpAccessToken',",
+              "        optional: false,",
+              "        description: 'a Yelp access token',",
+              "        test: token => token.length > 100,",
+              "    }]);",
+              "    ",
+              "    let { openIn, openAt = '', price = '', radius = 5000 } = pm.environment.toObject();",
+              "",
+              "    if (openIn) {",
+              "        openAt = Math.floor(new Date() / 1000) + 3600 * openIn;",
+              "    }",
+              "",
+              "    updateGlobals({ openAt, radius, price, offset: 0 });",
+              "    ",
+              "    console.log(`Searching for restaurants near ${pm.environment.get('location')}.`);",
+              "    console.log(`Searching for results within ${radius} meters.`);",
+              "    price && console.log(`Searching for results within Yelp price range (${price}).`);",
+              "    openAt && console.log(`Searching for results open in ${openIn} hours on ${new Date(1000 * openAt)}.`);",
+              "}"
+            ]
+          }
+        },
         {
           "listen": "test",
           "script": {
@@ -664,46 +691,20 @@
               "}"
             ]
           }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "type": "text/javascript",
-            "exec": [
-              "// Include util",
-              "eval(pm.globals.get('util'));",
-              "",
-              "// Set globals on the first iteration",
-              "if (!pm.globals.get('offset')) {",
-              "    validateVariables([{",
-              "        key: 'yelpAccessToken',",
-              "        optional: false,",
-              "        description: 'a Yelp access token',",
-              "        test: token => token.length > 100,",
-              "    }]);",
-              "    ",
-              "    let { openIn, openAt = '', price = '', radius = 5000 } = pm.environment.toObject();",
-              "",
-              "    if (openIn) {",
-              "        openAt = Math.floor(new Date() / 1000) + 3600 * openIn;",
-              "    }",
-              "",
-              "    updateGlobals({ openAt, radius, price, offset: 0 });",
-              "    ",
-              "    console.log(`Searching for restaurants near ${pm.environment.get('location')}.`);",
-              "    console.log(`Searching for results within ${radius} meters.`);",
-              "    price && console.log(`Searching for results within Yelp price range (${price}).`);",
-              "    openAt && console.log(`Searching for results open in ${openIn} hours on ${new Date(1000 * openAt)}.`);",
-              "}"
-            ]
-          }
         }
       ],
       "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{yelpAccessToken}}"
+          }
+        ],
+        "body": {},
         "url": {
           "raw": "https://api.yelp.com/v3/businesses/search?categories=restaurants&limit=50&sort_by=best_match&offset={{offset}}&location={{location}}&price={{price}}&radius={{radius}}&open_at={{openAt}}",
           "protocol": "https",
-          "auth": {},
           "host": [
             "api",
             "yelp",
@@ -763,18 +764,8 @@
               "equals": true,
               "description": "Set in pre-request script from`openIn`."
             }
-          ],
-          "variable": []
+          ]
         },
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{yelpAccessToken}}",
-            "description": ""
-          }
-        ],
-        "body": {},
         "description": "Get restaurants using the [Yelp Business Search API](https://www.yelp.com/developers/documentation/v3/business_search). Pick restaurants using a randomized process that favors popular, well-rated, and nearby restaurants while disallowing repetition of restaurants and categories from saved history.\n\nMake sure the variable `location` is set in your environment.\n\n|Environment Variable Name |Required? |Description\n|--------------------------|----------|--------------\n|`location`                |**YES**   |Specifies the combination of address, neighborhood, city, state or zip, and optional country to be used when searching for restaurants.\n|`price`                   |_no_      |Pricing levels to filter the search result by: 1 = $, 2 = $$, 3 = $$$, 4 = $$$$. The price filter can be a list of comma delimited pricing levels. For example, \"1,2,3\" will filter the results to show the ones that are $, $$, or $$$. Includes all price levels by default.\n|`radius`                  |_no_      |A search radius in meters. If the value is too large, an `AREA_TOO_LARGE` error may be returned. The max value is 40000 meters (25 miles). Default value is 5000.\n|`maxResults`              |_no_      |The target maximum number of results to get. Default value is 200. (_Note: Since setting this value too high could cause a long-running loop, the max allowed value is 1000._)\n|`choiceCount`             |_no_      |The number of restaurant choices to make between 1 and 10. Default value is 3.\n|`historyLength`           |_no_      |Customize the number of restaurants you want saved in the history. Default value is (3 × `choiceCount`).\n|`favorites`               |_no_      |A comma delimited list of Yelp restaurant IDs. You can find a restaurant's Yelp ID in the URL of its Yelp page. Restaurants added to favorites have a higher chance of being picked.\n|`openIn`                  |_no_      |A number of hours in which to check open times, used to get the `open_at` query parameter. This is useful when setting up a monitor; set `openIn` to the difference in hours between your meal time and the monitor's scheduled run time. For example, if `openIn` is set to 4 and a monitor is scheduled at 8:00am local time, it will return results open at 12:00pm local time. Setting `openIn` to 0 will return restaurants open now. When `openIn` is not specified, results are not filtered by open time.\n|`walking`                 |_no_      |A boolean (`true` or `false`) that makes the selection process favor places that are closer to the location. Default value is `false`."
       },
       "response": [
@@ -782,10 +773,17 @@
           "id": "7b47a943-a150-b1a6-c7f1-a653a979d35d",
           "name": "Successful response",
           "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{yelpAccessToken}}"
+              }
+            ],
+            "body": {},
             "url": {
               "raw": "https://api.yelp.com/v3/businesses/search?categories=restaurants&limit=50&sort_by=distance&offset={{offset}}&location={{location}}&price={{price}}&radius={{radius}}&open_at={{openAt}}",
               "protocol": "https",
-              "auth": {},
               "host": [
                 "api",
                 "yelp",
@@ -800,68 +798,49 @@
                 {
                   "key": "categories",
                   "value": "restaurants",
-                  "equals": true,
-                  "description": ""
+                  "equals": true
                 },
                 {
                   "key": "limit",
                   "value": "50",
-                  "equals": true,
-                  "description": ""
+                  "equals": true
                 },
                 {
                   "key": "sort_by",
                   "value": "distance",
-                  "equals": true,
-                  "description": ""
+                  "equals": true
                 },
                 {
                   "key": "offset",
                   "value": "{{offset}}",
-                  "equals": true,
-                  "description": ""
+                  "equals": true
                 },
                 {
                   "key": "location",
                   "value": "{{location}}",
-                  "equals": true,
-                  "description": ""
+                  "equals": true
                 },
                 {
                   "key": "price",
                   "value": "{{price}}",
-                  "equals": true,
-                  "description": ""
+                  "equals": true
                 },
                 {
                   "key": "radius",
                   "value": "{{radius}}",
-                  "equals": true,
-                  "description": ""
+                  "equals": true
                 },
                 {
                   "key": "open_at",
                   "value": "{{openAt}}",
-                  "equals": true,
-                  "description": ""
+                  "equals": true
                 }
-              ],
-              "variable": []
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{yelpAccessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {}
+              ]
+            }
           },
           "status": "OK",
           "code": 200,
           "_postman_previewlanguage": "json",
-          "_postman_previewtype": "text",
           "header": [
             {
               "key": "Accept-Ranges",
@@ -941,6 +920,25 @@
       "name": "Update Environment",
       "event": [
         {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Include util",
+              "eval(pm.globals.get('util'));",
+              "",
+              "// Transform environment values to match Postman API format",
+              "const env = pm.environment.toObject();",
+              "const values = Object.keys(env).map(key => {",
+              "    return { key, value: `${env[key]}` };",
+              "});",
+              "",
+              "// Save updated values to globals",
+              "updateGlobals({ values });"
+            ]
+          }
+        },
+        {
           "listen": "test",
           "script": {
             "type": "text/javascript",
@@ -972,46 +970,25 @@
               ""
             ]
           }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "type": "text/javascript",
-            "exec": [
-              "// Include util",
-              "eval(pm.globals.get('util'));",
-              "",
-              "// Transform environment values to match Postman API format",
-              "const env = pm.environment.toObject();",
-              "const values = Object.keys(env).map(key => {",
-              "    return { key, value: `${env[key]}` };",
-              "});",
-              "",
-              "// Save updated values to globals",
-              "updateGlobals({ values });"
-            ]
-          }
         }
       ],
       "request": {
-        "url": "https://api.getpostman.com/environments/{{environmentID}}",
         "method": "PUT",
         "header": [
           {
             "key": "x-api-key",
-            "value": "{{postmanApiKey}}",
-            "description": ""
+            "value": "{{postmanApiKey}}"
           },
           {
             "key": "Content-Type",
-            "value": "application/json",
-            "description": ""
+            "value": "application/json"
           }
         ],
         "body": {
           "mode": "raw",
           "raw": "{\n\t\"environment\": {\n\t\t\"values\": {{values}}\n\t}\n}"
         },
+        "url": "https://api.getpostman.com/environments/{{environmentID}}",
         "description": "Update the Postman environment for the lunch picker. This step is necessary when running the collection as a monitor, since updates to the environment that happen during a monitor run don't persist otherwise.\n\nMake sure `postmanApiKey` and `environmentID` are set in your environment. See the [Postman Pro API documentation](https://docs.api.getpostman.com/#authentication). You can get your environment id by downloading your environment and copying it from the `id` property, or you can get your environment from the [Postman Pro API](https://docs.api.getpostman.com/#d26bd079-e3e1-aa08-7e21-66f55df99351). Make sure the `environmentID` matches the id of the environment you run the collection with!\n\n|Environment Variable Name |Required? |Description\n|--------------------------|----------|--------------\n|`postmanApiKey`            |**YES**  |A Postman Pro [API key](https://docs.api.getpostman.com/#authentication).\n|`environmentID`            |**YES**  |The id for your environment."
       },
       "response": []
@@ -1020,28 +997,6 @@
       "_postman_id": "743d4b24-e3ee-e6b2-83b8-2ddfd1332dae",
       "name": "Post to Slack",
       "event": [
-        {
-          "listen": "test",
-          "script": {
-            "type": "text/javascript",
-            "exec": [
-              "// Include util",
-              "eval(pm.globals.get('util'));",
-              "",
-              "// Tests",
-              "pm.test('Response is OK', () => {",
-              "    pm.response.to.be.ok;",
-              "});",
-              "",
-              "pm.test('Slack response text is ok', () => {",
-              "    pm.expect(pm.response.text()).to.equal('ok');",
-              "});",
-              "",
-              "// Final cleanup",
-              "clearLunchPickerGlobals();"
-            ]
-          }
-        },
         {
           "listen": "prerequest",
           "script": {
@@ -1127,25 +1082,68 @@
               "}"
             ]
           }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Include util",
+              "eval(pm.globals.get('util'));",
+              "",
+              "// Tests",
+              "pm.test('Response is OK', () => {",
+              "    pm.response.to.be.ok;",
+              "});",
+              "",
+              "pm.test('Slack response text is ok', () => {",
+              "    pm.expect(pm.response.text()).to.equal('ok');",
+              "});",
+              "",
+              "// Final cleanup",
+              "clearLunchPickerGlobals();"
+            ]
+          }
         }
       ],
       "request": {
-        "url": "{{webhook}}",
         "method": "POST",
         "header": [
           {
             "key": "Content-Type",
-            "value": "application/json",
-            "description": ""
+            "value": "application/json"
           }
         ],
         "body": {
           "mode": "raw",
           "raw": "{\n\t\"text\": {{formattedChoices}}\n}"
         },
+        "url": "{{webhook}}",
         "description": "Post formatted restaurant choices to Slack. Include voting instructions if there's more than one choice.   \n\n\n> Side note: This is the last request in the collection for a reason. Posting to Slack is the main side effect of this collection, and we don't want it to happen more than once. When a monitor is created for this collection, an abnormal failure of the monitor will trigger a retry. By putting this request last, we get some failure tolerance in case there is an abnormal failure of one of the previous requests _and_ avoid an undesired duplication of the collection's primary side effect.\n   \n\nMake sure `webhook` is set in your environment. To get a webhook url, [create a Slack app](https://api.slack.com/slack-apps), [activate incoming webhooks](https://api.slack.com/incoming-webhooks), and add a webhook for your team.\n\n|Environment Variable Name |Required? |Description\n|--------------------------|----------|--------------\n|`webhook`                 |**YES**   |An [incoming webhook](https://api.slack.com/incoming-webhooks) url."
       },
       "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "a5e976e6-031b-44e1-ac04-1a852650debe",
+        "type": "text/javascript",
+        "exec": [
+          "console.log('TESTING TESTING TESTING');"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "3ab68987-bb97-48ae-9869-f500694db271",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
     }
   ]
 }
