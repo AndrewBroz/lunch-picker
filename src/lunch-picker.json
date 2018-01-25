@@ -13,10 +13,10 @@
         {
           "listen": "prerequest",
           "script": {
-            "id": "e6208fbf-9f91-4c8b-bced-e457d88f706a",
+            "id": "328f3def-0758-4768-a814-0687bdf38030",
             "type": "text/javascript",
             "exec": [
-              "// \"Lunch Picker\" MIT License, Copyright (c) 2017 Andrew Broz (@abroz)",
+              "// \"Lunch Picker\" MIT License, Copyright (c) 2018 Andrew Broz (@abroz)",
               "// Find the latest version at https://github.com/abroz/lunch-picker",
               "",
               "// Include util",
