@@ -311,7 +311,7 @@
             }
           ]
         },
-        "description": "Get a [Yelp Acess Token](https://www.yelp.com/developers/documentation/v3/authentication) from a Yelp client ID and Yelp client secret.\n\nMake sure both `yelpClientID` and `yelpClientSecret` are set in your environment.\n\n|Environment Variable Name |Required? |Description\n|--------------------------|----------|--------------\n|`yelpClientID`            |**YES**   |[A Yelp client ID.](https://www.yelp.com/developers/documentation/v3/authentication)\n|`yelpClientSecret`        |**YES**   |[A Yelp client secret.](https://www.yelp.com/developers/documentation/v3/authentication)"
+        "description": "Get a [Yelp Acess Token](https://www.yelp.com/developers/documentation/v3/authentication) from a Yelp client ID and Yelp client secret key. Make sure that both `yelpClientID` and `yelpClientSecret` are set in your environment.\n\n|Environment Variable Name |Required? |Description\n|--------------------------|----------|--------------\n|`yelpClientID`            |**YES**   |[A Yelp client ID.](https://www.yelp.com/developers/documentation/v3/authentication)\n|`yelpClientSecret`        |**YES**   |[A Yelp client secret.](https://www.yelp.com/developers/documentation/v3/authentication)"
       },
       "response": []
     },
