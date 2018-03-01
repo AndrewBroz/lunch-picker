@@ -322,6 +322,7 @@
         {
           "listen": "prerequest",
           "script": {
+            "id": "33ebd544-96c8-483c-b182-421a8e4dee76",
             "type": "text/javascript",
             "exec": [
               "// Include util",
@@ -355,6 +356,7 @@
         {
           "listen": "test",
           "script": {
+            "id": "bd5f930e-4ab5-4e98-82c3-ca8293924c64",
             "type": "text/javascript",
             "exec": [
               "const currentGlobals = pm.globals.toObject();",
@@ -512,7 +514,6 @@
               " * @returns {Object[]} - An array of references to restaurant objects (raffle tickets).",
               " */",
               "function getRafflePool (restaurants, choiceHistory = []) {",
-              "    // Calculate stats",
               "    calculateStats(restaurants);",
               "    ",
               "    // Only include the closest restaurant in a chain",
@@ -524,7 +525,6 @@
               "    );",
               "    ",
               "    if (restaurantOptions.length < choiceCount) {",
-              "        // The history is too constraining, so try removing only exact repeats",
               "        warning('There aren\\'t many options left. Try adjusting your environment variables.');",
               "        restaurantOptions = dedupedRestaurants.filter(restaurant =>",
               "            notRepeatChoice(restaurant, choiceHistory)",
