@@ -13,7 +13,7 @@
         {
           "listen": "prerequest",
           "script": {
-            "id": "328f3def-0758-4768-a814-0687bdf38030",
+            "id": "08775de0-58ef-479c-8dd2-4af0c45049f8",
             "type": "text/javascript",
             "exec": [
               "// \"Lunch Picker\" MIT License, Copyright (c) 2018 Andrew Broz (@abroz)",
@@ -118,7 +118,7 @@
               "// Add a set of utility functions to requests to a global. To include",
               "// these utilities in a pre-request or a test script, add this line to",
               "// the top of the script:",
-              "//    eval(globals.util);",
+              "//    eval(pm.globals.get('util'));",
               "pm.globals.set('util', `(${util})()`);",
               "",
               "/**",
