@@ -14,9 +14,9 @@ Start by [reading the docs][docs], then try [running Lunch Picker in Postman][ru
 
 Check out the [Postman blog post][blog] for some background and a high-level overview of the Lunch Picker collection.
 
-_MIT License, Copyright (c) 2018 [Andrew Broz][abroz]_
+_MIT License, Copyright (c) 2021 [Andrew Broz][andrewbroz]_
 
-[abroz]: https://github.com/abroz "Andrew Broz on GitHub"
+[andrewbroz]: https://github.com/andrewbroz "Andrew Broz on GitHub"
 [blog]: http://blog.getpostman.com/2017/07/19/building-a-restaurant-discovery-service-with-postman/
 [button]: https://run.pstmn.io/button.svg
 [collections]: https://www.getpostman.com/docs/postman/collections/creating_collections "About Collections"
